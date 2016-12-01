@@ -8,14 +8,21 @@ from pandas.stats.moments import ewma
 from pandas import Series
 
 class TimeSeries:
-    def __init__(self, data):
+    def __init__(self, data, lag=2):
         self.data = data
+
         self.span = get_best_span(self.data)
         self.smoothed = data_smoother(self.data, self.span)
         self.trend_errors = self.data - self.smoothed
+
         self.autocorrelation = array(
             [Series(self.trend_errors).autocorr(i)
              for i in range(self.trend_errors.size // 4)])
+
+        errors_coefficients, errors_estimate = get_errors_estimate(
+            self.trend_errors, lag)
+        self.errors_coefficients = errors_coefficients
+        self.errors_estimate = errors_estimate
 
 def data_smoother(data, span):
     smoothed = ewma(data, span=span)
