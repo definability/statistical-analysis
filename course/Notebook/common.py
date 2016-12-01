@@ -110,7 +110,7 @@ def get_errors_estimate(errors, lag):
 # Trend
 def get_S(data, alpha):
     result = [alpha * data[0]]
-    for value in data:
+    for value in data[1:]:
         result.append(alpha * value + (1 - alpha) * result[-1])
     return result
 
