@@ -28,6 +28,29 @@ class TimeSeries:
                               + concatenate(([0] * lag, self.errors_estimate)))
         self.estimate_errors = self.data - self.data_estimate
 
+        self.alpha = 2. / (self.span + 1)
+        S1 = get_S(self.smoothed, self.alpha)
+        S2 = get_S(S1, self.alpha)
+        S3 = get_S(S2, self.alpha)
+        a0 = get_a0(S1, S2, S3, self.alpha)
+        a1 = get_a1(S1, S2, S3, self.alpha)
+        a2 = get_a2(S1, S2, S3, self.alpha)
+
+        trend_forecast = [forecast(a0, a1, a2, steps) for steps in (1, 2, 3)]
+        self.trend_forecasted = concatenate((self.smoothed, trend_forecast))
+
+        errors_forecasted = self.errors_estimate.copy()
+        for forecast_steps in (1, 2, 3):
+            errors_forecast = get_errors_forecast(errors_forecasted,
+                                                  self.errors_coefficients)
+            errors_forecasted = concatenate((errors_forecasted,
+                                             [errors_forecast]))
+        self.errors_forecasted = errors_forecasted
+
+        self.data_forecasted = (
+            self.trend_forecasted
+            + concatenate(([0] * lag, self.errors_forecasted)))
+
 def data_smoother(data, span):
     smoothed = ewma(data, span=span)
     errors = data - smoothed
