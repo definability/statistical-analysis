@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from numpy import loadtxt, arange, log, delete, array, ones, concatenate
+from numpy import loadtxt, arange, log, delete, array, ones, concatenate, vstack, corrcoef
 from numpy.linalg import lstsq
 from scipy.stats import f
 from scipy.stats.mstats import normaltest
@@ -135,3 +135,23 @@ def get_errors_forecast(regression_errors, coefficients, steps=1, time=-1):
     return (coefficients[0] * regression_errors[time - 2]
             + coefficients[1] * regression_errors[time - 1]
             + coefficients[2])
+
+# Regressors model
+
+def get_residuum(y, regressors, coefficients):
+    return y - array([c * r for c, r in zip(regressors, coefficients)]).sum(axis=0)[:y.size]
+
+def get_coeffs(y, regressors, coefficients, sequences):
+    residuum = get_residuum(y, regressors, coefficients)
+    A = vstack([[residuum], sequences[:, :y.size]])
+    best = abs(corrcoef(A)[0][1:]).argmax()
+    regressor = sequences[best]
+    sequences = delete(sequences, best, axis=0)
+    regressors += [regressor]
+    cut_regressors = array(regressors)[..., :y.size]
+    transposed_regressors = cut_regressors.T
+    coefficients = lstsq(transposed_regressors, y)[0]
+    new_residuum = get_residuum(y, regressors, coefficients)
+    S = (residuum**2).sum(), (new_residuum**2).sum()
+    F = (y.size - len(regressors)) * (S[0] - S[1]) / S[1]
+    return regressors, coefficients, sequences, F, best
