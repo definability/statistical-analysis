@@ -62,6 +62,15 @@ def get_best_span(data, min_span=2, max_span=10):
     return (min_span
         + array([get_smoothing_errors_normality(data, s).statistic
                  for s in range(min_span, max_span + 1)]).argmin())
+
+def get_errors_estimate(errors, lag):
+    lag = 2
+    result_errors = errors[lag:]
+    regression_errors = array([concatenate((errors[i - lag:i], [1])) for i in range(lag, errors.size)])
+    coefficients = lstsq(regression_errors, result_errors)[0]
+    autoregressors = (coefficients*regression_errors).sum(axis=1)
+    return coefficients, autoregressors
+
 # Forecast
 
 # Trend
