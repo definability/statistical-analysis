@@ -127,7 +127,7 @@ def get_a2(S1, S2, S3, alpha):
     return [((alpha**2) / ((1 - alpha)**2)) * (s1 - 2 * s2) + s3 for s1, s2, s3 in zip(S1, S2, S3)]
 
 def forecast(a0, a1, a2, steps, time=-1):
-    return a0[time] + a1[time] * steps + a2[time] * steps * .5
+    return a0[time] + a1[time] * steps # + a2[time] * (steps**2) * .5
 
 # Errors
 
