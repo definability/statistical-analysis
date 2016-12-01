@@ -24,6 +24,10 @@ class TimeSeries:
         self.errors_coefficients = errors_coefficients
         self.errors_estimate = errors_estimate
 
+        self.data_estimate = (self.smoothed
+                              + concatenate(([0] * lag, self.errors_estimate)))
+        self.estimate_errors = self.data - self.data_estimate
+
 def data_smoother(data, span):
     smoothed = ewma(data, span=span)
     errors = data - smoothed
