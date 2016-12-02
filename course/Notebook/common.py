@@ -39,13 +39,10 @@ class TimeSeries:
         trend_forecast = [forecast(a0, a1, a2, steps) for steps in (1, 2, 3)]
         self.trend_forecasted = concatenate((self.smoothed, trend_forecast))
 
-        errors_forecasted = self.errors_estimate.copy()
-        for forecast_steps in (1, 2, 3):
-            errors_forecast = get_errors_forecast(errors_forecasted,
-                                                  self.errors_coefficients)
-            errors_forecasted = concatenate((errors_forecasted,
-                                             [errors_forecast]))
-        self.errors_forecasted = errors_forecasted
+        self.errors_forecasted = concatenate(
+                (self.errors_estimate,
+                 get_errors_forecast(
+                     self.errors_estimate, self.errors_coefficients, 3)))
 
         self.data_forecasted = (
             self.trend_forecasted
@@ -132,9 +129,15 @@ def forecast(a0, a1, a2, steps, time=-1):
 # Errors
 
 def get_errors_forecast(regression_errors, coefficients, steps=1, time=-1):
-    return (coefficients[0] * regression_errors[time - 2]
-            + coefficients[1] * regression_errors[time - 1]
+    errors = regression_errors[time - 1], regression_errors[time]
+    forecast = []
+    for _ in range(steps):
+        forecast.append(
+            coefficients[0] * errors[0]
+            + coefficients[1] * errors[1]
             + coefficients[2])
+        errors = errors[1], forecast[-1]
+    return forecast
 
 # Regressors model
 
