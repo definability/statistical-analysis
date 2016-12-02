@@ -48,6 +48,12 @@ class TimeSeries:
             self.trend_forecasted
             + concatenate(([0] * lag, self.errors_forecasted)))
 
+        test_head = array(self.data_forecasted[:6])
+        test_tail = [forecast(a0, a1, a2, 3, time)
+                     + get_errors_forecast(self.errors_estimate, self.errors_coefficients, 3, time - 3)[2]
+                     for time in range(3, self.data.size)]
+        self.forecast_test = concatenate((test_head, test_tail))
+
 def data_smoother(data, span):
     smoothed = ewma(data, span=span)
     errors = data - smoothed
