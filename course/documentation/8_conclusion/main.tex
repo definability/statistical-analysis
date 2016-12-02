@@ -14,7 +14,8 @@
 Це було визначено за допомогою порівняння середньоквадратичного відхилення
 помилок прогнозу для існуючих даних.
 Прогноз за ретроданими дав помилку $\sigma = 24.06$,
-а прогноз за прогнозами моделі $\sigma = 25.91$.
+а прогноз за прогнозами моделі $\sigma = 25.91$
+(рис. \ref{fig:y:forecast:comparison}).
 Це могло статися через ряд причин:
 \begin{enumerate}
   \item кожен регресор мав свою похибку при прогнозі,
@@ -28,6 +29,12 @@
   \item дані методи не підходять для цих даних.
 \end{enumerate}
 
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework3_files/Coursework3_8_0.png}
-\end{center}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework3_files/Coursework3_8_0.png}
+  \caption{Порівняння прогнозів $Y$ за ретроданими та моделлю $X$}
+  \label{fig:y:forecast:comparison}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework3_files/Coursework3_8_0.png}
+% \end{center}

@@ -19,10 +19,17 @@
 
 Для початку побудуємо зглажування на основі експоненційно зваженого
 ковзкого середнього з $\alpha = \frac{1}{3}$,
-при якому довжина віконця дорівнює $6$.
-\begin{center}
-  \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_12_0.png}
-\end{center}
+при якому довжина віконця дорівнює $6$ (рис. \ref{fig:anomaly:source}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_12_0.png}
+  \caption{Зглажування ряду з аномаліями}
+  \label{fig:anomaly:source}
+\end{figure}
+
+% \begin{center}
+%   \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_12_0.png}
+% \end{center}
 
 Одразу видно, де знаходяться аномальні точки,
 проте треба застосувати метод,
@@ -57,37 +64,67 @@
   t_{anomaly} = \max\limits_{t}{F_{F, T, T-1}\left( V\left( t \right) \right)}.
 \end{equation*}
 Поглянемо на те, як змінюється вибіркова дисперсія помилки
-при відкиданні кожної точки.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_15_0.png}
-\end{center}
+при відкиданні кожної точки на рис. \ref{fig:anomaly:variance}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_15_0.png}
+  \caption{Відношення дисперсій помилок за виправлення певних точок}
+  \label{fig:anomaly:variance}
+\end{figure}
+
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_15_0.png}
+% \end{center}
 
 З рисунку видно піки саме в тих місцях,
 де передбачалась наявнисть аномальних точок.
 Проте зараз в нас є міра їх ``аномальності''
-у вигляді ваги хвостів розподілу Фішера.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_17_0.png}
-\end{center}
+у вигляді ваги хвостів розподілу Фішера (рис. \ref{fig:anomaly:fisher}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_17_0.png}
+  \caption{Хвости розподілу Фішера для відношень дисперсій виправлених рядів}
+  \label{fig:anomaly:fisher}
+\end{figure}
+
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_17_0.png}
+% \end{center}
 
 Відкидаємо одну за одною точки, при яких дисперсія значно змінюється,
-а саме такі, що з ймовірністю $0.9$ це дисперсія іншої виборки.
+а саме такі, що з ймовірністю $0.9$ це дисперсія іншої виборки
+(рис. \ref{fig:anomaly:fisher:0}, \ref{fig:anomaly:fisher:1},
+\ref{fig:anomaly:fisher:2}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_18_0.png}
+  \caption{Хвости розподілу Фішера для відношень дисперсій виправлених рядів}
+  \label{fig:anomaly:fisher:0}
+\end{figure}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_18_1.png}
+  \caption{Хвости розподілу Фішера для відношень дисперсій виправлених рядів}
+  \label{fig:anomaly:fisher:1}
+\end{figure}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_18_2.png}
+  \caption{Хвости розподілу Фішера для відношень дисперсій виправлених рядів}
+  \label{fig:anomaly:fisher:2}
+\end{figure}
 
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_17_0.png}
-\end{center}
-
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_0.png}
-\end{center}
-
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_1.png}
-\end{center}
-
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_2.png}
-\end{center}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_0.png}
+% \end{center}
+% 
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_1.png}
+% \end{center}
+% 
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_18_2.png}
+% \end{center}
 
 Аномальні дані знаходилися в точках $2$, $12$ і $4$.
 Їх було виправлено за принципом найближчих сусідів ---
@@ -95,9 +132,15 @@
 Маємо графік з даними без аномалій та зглажуванням,
 яке тепер значно краще описує ряд
 
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_21_0.png}
-\end{center}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_21_0.png}
+  \caption{Оцінка виправленого ряду}
+  \label{fig:anomaly:fixed}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_21_0.png}
+% \end{center}
 
 \section{Вибір правильного зглажуючого віконця}
 
@@ -118,11 +161,17 @@
 була наймешною.
 Ця умова винонується для віконця шириною $7$,
 що відповідає $\alpha = \frac{1}{4}$.
-Маємо похибку $\sigma = 16.3$.
+Маємо похибку $\sigma = 16.3$ (рис. \ref{fig:span:fixed}).
 
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_24_0.png}
-\end{center}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_24_0.png}
+  \caption{Помилки тренду}
+  \label{fig:span:fixed}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_24_0.png}
+% \end{center}
 
 \section{Невипадкові похибки}
 
@@ -150,30 +199,56 @@
   = a_0 + \sum_{i = 0}^{\tau - 1} \delta_{t + i} \cdot a_{i + 1}.
 \end{equation}
 Дійсно видно, що середнє значення похибки ненульове,
-тобто її можно як мінімум зсунути по вертикальній осі.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_27_0.png}
-\end{center}
+тобто її можно як мінімум зсунути по вертикальній осі
+(рис. \ref{fig:error:source}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_27_0.png}
+  \caption{Фільтр з кращими параметрами}
+  \label{fig:error:source}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_27_0.png}
+% \end{center}
 
 Щоб визначити величину лагу, потрібно порахувати авторегресії різних порядків.
 Далі методом найменших квадратів розраховуються коефіцієнти для рівняння
-\eqref{nonrandom_error:eq}.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_29_0.png}
-\end{center}
+\eqref{nonrandom_error:eq} (рис. \ref{fig:error:autocorrelation}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_29_0.png}
+  \caption{Автокореляція}
+  \label{fig:error:autocorrelation}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_29_0.png}
+% \end{center}
 
 Обравши крок $2$, отримали хоч і невелику залежну частину,
 проте помилка піднялась і тепер її середнє нульове.
-Отримані коефіцієнти $a_i$: $0.12$, $0.31$, $-9.81$.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_33_0.png}
-\end{center}
+Отримані коефіцієнти $a_i$: $0.12$, $0.31$, $-9.81$
+(рис. \ref{fig:error:fixed}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_33_0.png}
+  \caption{Порівняння помилки з оцінкою її невипадкової частини}
+  \label{fig:error:fixed}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_33_0.png}
+% \end{center}
 
 Нова апроксимація ряду виглядає наступним чином та має меншу похибку
-$\sigma = 15.1$.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_35_0.png}
-\end{center}
+$\sigma = 15.1$ (рис. \ref{fig:error:estimate}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_35_0.png}
+  \caption{Апроксимація з урахуванням невипадкових помилок}
+  \label{fig:error:estimate}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_35_0.png}
+% \end{center}
 
 \section{Прогнозування}
 
@@ -209,15 +284,29 @@ $\sigma = 15.1$.
   Y_{t + L} = \alpha_{0 t} + \alpha_{1 t} \cdot L.
 \end{equation*}
 
-Щоб приблизно зрозуміти якість прогнозу,
+Щоб приблизно визначити якість прогнозу,
 можемо побудувати його для вже існуючих даних та порівняти
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_41_0.png}
-\end{center}
-Прогноз на три кроки після останньої точки має вигляд.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_42_0.png}
-\end{center}
+(рис. \ref{fig:forecast:initial}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_41_0.png}
+  \caption{Прогнозування ретроданих}
+  \label{fig:forecast:initial}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_41_0.png}
+% \end{center}
+Прогноз на три кроки після останньої точки має вигляд
+(рис. \ref{fig:forecast:y}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_42_0.png}
+  \caption{Прогноз}
+  \label{fig:forecast:y}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_42_0.png}
+% \end{center}
 
 \section{Прогнозування невипадкових помилок}
 Ми маємо лінійну формулу для розрахунку залежності
@@ -226,14 +315,26 @@ $\sigma = 15.1$.
   \delta_{t + 2} = a_0 + \delta_{t} \cdot a_1 + \delta_{t + 1} \cdot  a_2.
 \end{equation*}
 Перевіримо якість прогнозу у той самий спосіб ---
-порівняємо його з наявними даними.
-
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_44_0.png}
-\end{center}
+порівняємо його з наявними даними (рис. \ref{fig:forecast:errors}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_42_0.png}
+  \caption{Прогнозування ретроданих з урахуванням невипадкових помилок}
+  \label{fig:forecast:errors}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_44_0.png}
+% \end{center}
 
 \section{Прогноз процесу}
-Кінцевий прогноз виглядає наступним чином.
-\begin{center}
-\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_47_0.png}
-\end{center}
+Кінцевий прогноз виглядає наступним чином
+(рис. \ref{fig:forecast:with_errors}).
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{Coursework_files/Coursework_42_0.png}
+  \caption{Прогноз з урахуванням невипадкових помилок}
+  \label{fig:forecast:with_errors}
+\end{figure}
+% \begin{center}
+% \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Coursework_files/Coursework_47_0.png}
+% \end{center}
